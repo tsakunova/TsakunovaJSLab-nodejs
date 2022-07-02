@@ -1,0 +1,26 @@
+{
+  "name": "bar-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "sls offline start",
+    "deploy": "sls deploy"
+  },
+  "author": "Tsakunova Tatsiana",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-offline": "^8.8.0",
+    "prettier": "^2.3.2",
+    "serverless": "^2.52.1"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "aws-cdk": "^2.30.0",
+    "aws-lambda": "^1.0.6",
+    "serverless-http": "^3.0.1",
+    "uuid": "^8.3.2",
+    "yup": "^0.32.11"
+  }
+}
