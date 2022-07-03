@@ -1,0 +1,51 @@
+service: bar-api
+
+custom:
+  dynamodb:
+    start:
+      migrate: true
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: dev
+  region: us-east-1
+  lambdaHashingVersion: 20201221
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": ["BarTable", "Arn"] }
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+functions:
+  app:
+    handler: src/index.ingredientHandler
+    events:
+      - http:
+          path: /api/{proxy+}
+          method: any
+
+resources:
+  Resources:
+    BarTable:
+      Type: "AWS::DynamoDB::Table"
+      Properties:
+        TableName: BarTable
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        AttributeDefinitions:
+          - AttributeName: ingredientID
+            AttributeType: S
+        KeySchema:
+          - AttributeName: ingredientID
+            KeyType: HASH
