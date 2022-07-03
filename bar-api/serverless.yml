@@ -31,7 +31,7 @@ functions:
     handler: src/index.ingredientHandler
     events:
       - http:
-          path: /ingredients/{proxy+}
+          path: /api/{proxy+}
           method: any
 
 resources:

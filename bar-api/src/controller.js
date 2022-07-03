@@ -38,7 +38,7 @@ class IngredientController {
       res.status(200).json(ingredient)
     } catch (error) {
       res.status(404).send({
-        error: "Ingredient not found"
+        error: "Ingredient not found!"
       });
     }
   };

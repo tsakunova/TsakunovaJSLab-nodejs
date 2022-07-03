@@ -9,7 +9,7 @@ const headers = {
 class IngredientServices {
   tableName;
   constructor(tn) {
-    this.tableName = tn
+    this.tableName = tn;
   }
   async getIngredients() {
     const output = await docClient
@@ -17,7 +17,7 @@ class IngredientServices {
         TableName: this.tableName,
       })
       .promise();
-    return output
+    return output;
   }
 
   async fetchIngredientById(id) {
@@ -38,7 +38,6 @@ class IngredientServices {
   };
 
   async getIngredient(id) {
-    console.log(id)
     const ingredient = await this.fetchIngredientById(id);
     return ingredient;
   };
@@ -54,8 +53,7 @@ class IngredientServices {
   async updateIngredient(ingredient) {
     const {
       ingredientID
-    } = ingredient
-    console.log(ingredient)
+    } = ingredient;
     await this.fetchIngredientById(ingredientID);
     await docClient
       .put({
